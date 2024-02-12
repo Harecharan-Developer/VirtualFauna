@@ -30,7 +30,8 @@ def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
 # Define API endpoint for reading community fisherman data
-@app.get("/community-fisherman-data")
-def get_community_fisherman_data():
+@app.get("/schedule/")
+def get_schedule():
     allocated_fish_json = read_community_fisherman_data()
-    return allocated_fish_json
+
+    return {"schedule": allocated_fish_json}    
