@@ -1,0 +1,21 @@
+name_of_fish,current_price_at_market,location_of_fish,viable_season
+Salmon,13,"('Indian Ocean', 'Latitude -74.099943954623, Longitude -54.99113564962512')",Spring
+Tuna,10,"('Indian Ocean', 'Latitude -79.75486436306075, Longitude -147.25810075152842')",Spring
+Cod,13,"('Indian Ocean', 'Latitude -22.991366879226078, Longitude -83.95874341232313')",Spring
+Trout,18,"('Indian Ocean', 'Latitude -61.763097055630695, Longitude -12.698453251644906')",Spring
+Sardines,8,"('Indian Ocean', 'Latitude -65.41163375484429, Longitude -163.2923218705987')",Spring
+Haddock,12,"('Indian Ocean', 'Latitude 23.58029201350918, Longitude -152.5857074905045')",Summer
+Mackerel,8,"('Indian Ocean', 'Latitude 75.31499635318215, Longitude 149.90835729593596')",Summer
+Halibut,18,"('Indian Ocean', 'Latitude 29.671910385003102, Longitude 12.72111122461024')",Summer
+Perch,7,"('Indian Ocean', 'Latitude 1.4708695068135142, Longitude 142.25094440352132')",Summer
+Bass,15,"('Indian Ocean', 'Latitude 40.57021204561127, Longitude 17.858505196295084')",Summer
+Catfish,5,"('Indian Ocean', 'Latitude 20.05279671637119, Longitude -33.51785258771673')",Fall
+Pike,18,"('Indian Ocean', 'Latitude -16.3628449441768, Longitude -154.8064999752479')",Fall
+Grouper,7,"('Indian Ocean', 'Latitude 75.23291109978317, Longitude -88.34696480660025')",Fall
+Snapper,9,"('Indian Ocean', 'Latitude -49.31481514415236, Longitude 173.3194816967274')",Fall
+Mahi Mahi,20,"('Indian Ocean', 'Latitude -2.8058855859026153, Longitude 122.5752745181469')",Fall
+Carp,20,"('Indian Ocean', 'Latitude 11.34124411051134, Longitude -152.29480793691548')",Winter
+Swordfish,11,"('Indian Ocean', 'Latitude 37.480312083271585, Longitude -73.26444211893637')",Winter
+Yellowtail,8,"('Indian Ocean', 'Latitude 50.264159942085655, Longitude -98.18092137691455')",Winter
+Herring,15,"('Indian Ocean', 'Latitude 48.71826789455528, Longitude 77.55832819069349')",Winter
+Anchovies,10,"('Indian Ocean', 'Latitude -89.70186751422197, Longitude -115.51555031779394')",Winter
