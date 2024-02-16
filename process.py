@@ -56,18 +56,25 @@ def read_community_fisherman_data():
 
     allocated_fish = {}
 
-    # Allocate fishes to fishermen
+    allocated_quantity_list=[]
+    for i in range(len(fishermen)):
+        allocated_quantity_list.append(random.randint(100, 150))
+
+    allocated_quantity_list.sort(reverse=True)
+
+    counter=0
+# Allocate fishes to fishermen
     for fisherman in fishermen:
         allocated_fisherman = []
         for fish in selected_fish:
             if fish in allocated_fisherman:
                 continue
-            allocated_quantity = random.randint(100, 150)  # Randomly allocate quantity between 100 and 150
-            actual_haul = random.randint(allocated_quantity - 30, allocated_quantity + 30)
-            difference = allocated_quantity - actual_haul
-            allocated_fisherman.append((fish, allocated_quantity, actual_haul, difference))
-
+            actual_haul = random.randint(allocated_quantity_list[counter] - 30, allocated_quantity_list[counter] + 30)
+            difference = allocated_quantity_list[counter] - actual_haul
+            allocated_fisherman.append((fish, allocated_quantity_list[counter],actual_haul, difference))
+        counter += 1
         allocated_fish[fisherman[0]] = allocated_fisherman
+
 
     # Write updated community_fisherman_data to CSV file
     community_fisherman_data.to_csv('community_fisherman_data.csv', index=False)
