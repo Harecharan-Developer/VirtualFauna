@@ -3,14 +3,22 @@ import random
 from datetime import datetime, timedelta
 import json
 
+def fisherman_json(list_of_fisherman_name):
+    df = pd.read_csv('community_fisherman_data.csv')         # Read the CSV file into a DataFrame
+    new_rows = []                                            # Create a list to store new rows 
+    for name in list_of_fisherman_name:                     # I terate through the list of fisherman names
+        if name not in df['Community_Name'].values:         # Check if the name is not already present in the 'Community_Name' column
+            new_rows.append({'Community_Name': name})
+
+    new_df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
+    new_df.fillna('', inplace=True)
+    new_df.to_csv('community_fisherman_data.csv', index=False)
+
+
 # Read community_fisherman_data CSV file
 def read_community_fisherman_data():
     community_fisherman_data = pd.read_csv('community_fisherman_data.csv')
-
-    # Create a list to store fishermen data
     fishermen = []
-
-    # Extract the last column name
     last_column_name = community_fisherman_data.columns[-1]
 
     # Convert the data into tuples of (fisherman_name, allocated, actual, difference)
@@ -22,8 +30,6 @@ def read_community_fisherman_data():
 
     # Sort fishermen based on the difference (priority to the most difference)
     fishermen.sort(key=lambda x: x[3], reverse=True)
-    # print("Fishermen:")
-    # print(fishermen)
 
     # Read fish_data CSV file
     fish_data = pd.read_csv('fish_data.csv')
@@ -31,10 +37,6 @@ def read_community_fisherman_data():
     # Find fishes that match the current season
     current_date = datetime.strptime(last_column_name, '%m/%d/%Y')
     next_week_date = current_date + timedelta(days=7)
-    # print("Next week date:")
-    # print(next_week_date)
-    # print("Current date:")
-    # print(current_date)
 
     # Determine the current season
     if current_date.month in [3, 4, 5]:
@@ -48,14 +50,11 @@ def read_community_fisherman_data():
 
     # Filter fish data for the current season
     current_season_fish = fish_data[fish_data['viable_season'] == current_season]
-    # print('Current season fish:')
-    # print(current_season_fish)
 
     # Select fishes present in the current season
     selected_fish = current_season_fish['name_of_fish'].tolist()
-    # print("Selected fish:", selected_fish)
 
-    allocated_fish = []
+    allocated_fish = {}
 
     # Allocate fishes to fishermen
     for fisherman in fishermen:
@@ -68,20 +67,19 @@ def read_community_fisherman_data():
             difference = allocated_quantity - actual_haul
             allocated_fisherman.append((fish, allocated_quantity, actual_haul, difference))
 
-        allocated_fish.append({
-            'fisherman_name': fisherman[0],
-            'allocated_fish': allocated_fisherman
-        })
+        allocated_fish[fisherman[0]] = allocated_fisherman
 
     # Write updated community_fisherman_data to CSV file
     community_fisherman_data.to_csv('community_fisherman_data.csv', index=False)
 
-    # print("Scheduling completed, and data written to community_fisherman_data.csv.")
-
-    # Return allocated fish data as JSON
-    return json.dumps(allocated_fish)
+    # Return allocated fish data as a dictionary
+    return allocated_fish
 
 # Example usage:
-# allocated_fish_json = read_community_fisherman_data()
-# print("Allocated Fish (JSON):")
-# print(allocated_fish_json)
+allocated_fish_dict = read_community_fisherman_data()
+print("Allocated Fish (Dictionary):")
+print(allocated_fish_dict)
+
+
+
+
